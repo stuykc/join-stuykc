@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="hero-unit" style="text-align:center">
+    <h2 style="text-decoration:underline;">Interested in joining <span style="color:#00aeef;">Stuyvesant Key Club?</span></h2>
+    <img src="/static/logo.png" style="opacity:.8;">
+</div>
+<div class="row">
+    <div class="span5" style="margin:0 auto; float:none;" id="join-container">
+        <form class="form-horizontal" action="/" method="post">
+            <div class="control-group">
+                <label class="control-label" for="inputName">Name</label>
+                <div class="controls">
+                    <input type="text" class="input-large" name="name" placeholder="Full Name" autofocus>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputId">4 Digit ID</label>
+                <div class="controls">
+                    <input type="text" class="input-mini" maxlength="4" name="id" placeholder="ID">
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputemail">Email</label>
+                <div class="controls">
+                    <input type="email" class="input-large" name="email" placeholder="Email Address">
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" value="join" class="btn btn-primary">Join Stuykc!</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="/static/bootstrap.min.js"></script>
+<script>
+var isFormGood = false;
+$(document).ready(function() {
+  $('button[type="submit"]').attr('disabled','disabled');
+  $('input').keyup(function() {
+    $('input').each(function() {
+      if($(this).val()) {
+        isFormGood = true
+      }
+      else {
+        isFormGood = false
+        return false
+      }
+    });
+    if(isFormGood) {
+      $('button[type="submit"]').removeAttr('disabled');
+    }
+    else {
+      $('button[type="submit"]').attr('disabled','disabled');
+    }
+  });
+});
+</script>
+<script>
+$(document).ready(form);
+$(window).resize(form);
+function form() {
+  if($(window).width() < 980) {
+    $('#join-container').addClass('span7').removeClass('span5');
+  }
+  else {
+    $('#join-container').addClass('span5').removeClass('span7');
+  }
+}
+</script>
+{% endblock %}
