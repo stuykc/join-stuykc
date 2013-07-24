@@ -17,8 +17,13 @@ libraries:
 
 handlers:
 - url: /favicon\.ico
-  static_files: join/static/favicon\.ico
+  static_files: join/static/favicon.ico
   upload: join/static/favicon\.ico
+  expiration: 7d
+- url: /(apple-touch-icon.*\.(png))
+  static_files: join/static/\1
+  upload: join/static/(apple-touch-icon.*\.png)
+  expiration: 7d
 - url: /images
   static_dir: join/static/images
   expiration: 7d
