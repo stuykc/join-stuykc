@@ -14,14 +14,17 @@ libraries:
   version: latest
 
 handlers:
+- url: /favicon\.ico
+  static_files: join/static/favicon\.ico
+  upload: join/static/favicon\.ico
 - url: /images
   static_dir: join/static/images
-  expiration: 3d
+  expiration: 7d
 - url: /css
   static_dir: join/static/css
-  expiration: 12h
+  expiration: 3d
 - url: /js
   static_dir: join/static/js
-  expiration: 1d
+  expiration: 3d
 - url: /.*
   script: join.views.application
