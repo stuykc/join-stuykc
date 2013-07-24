@@ -1,3 +1,6 @@
 [submodule "bootstrap"]
 	path = bootstrap
 	url = git://github.com/stuykc/bootstrap.git
+[submodule "gspread"]
+	path = gspread
+	url = git@github.com:burnash/gspread.git

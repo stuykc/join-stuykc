@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
 <div class="hero-unit" style="text-align:center">
-    <h2 style="text-decoration:underline;">Interested in joining <span style="color:#00aeef;">Stuyvesant Key Club?</span></h2>
-    <img src="/static/logo.png" style="opacity:.8;">
+    <h2>Interested in joining <span style="color:#00aeef;">Stuyvesant Key Club?</span></h2>
+    <img src="/images/logo.png" style="opacity:.8;">
 </div>
 <div class="row">
     <div class="span5" style="margin:0 auto; float:none;" id="join-container">
-        <form class="form-horizontal" action="/" method="post">
+        <form class="form-horizontal" action="/join" method="post">
             <div class="control-group">
                 <label class="control-label" for="inputName">Name</label>
                 <div class="controls">
@@ -27,13 +27,12 @@
             </div>
             <div class="control-group">
                 <div class="controls">
-                    <button type="submit" value="join" class="btn btn-primary">Join Stuykc!</button>
+                    <button type="submit" value="join" class="btn btn-primary">Submit</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-<script src="/static/bootstrap.min.js"></script>
 <script>
 var isFormGood = false;
 $(document).ready(function() {
