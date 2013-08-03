@@ -32,6 +32,7 @@ class JoinForm(webapp2.RequestHandler):
         self.response.write(template.render(template_values))
 
 application = webapp2.WSGIApplication([
-    ('/', MainPage),
+    ('/mainpage', MainPage),
+    ('/', JoinForm),
     ('/join', JoinForm)
 ], debug=True)

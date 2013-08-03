@@ -13,7 +13,7 @@
 $(document).ready(video);
 $(window).resize(video);
 function video() {
-  $('#video').height($('#video').width() / 1.778);
+  $('#video').height(Math.round($('#video').width() / 1.777));
 }
 </script>
 {% endblock %}

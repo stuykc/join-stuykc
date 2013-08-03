@@ -35,6 +35,18 @@
 </div>
 {% endblock %}{% block scripts %}
 <script>
+$(document).ready(form);
+$(window).resize(form);
+function form() {
+  if($(window).width() < 980) {
+    $('#join-container').addClass('span7').removeClass('span5');
+  }
+  else {
+    $('#join-container').addClass('span5').removeClass('span7');
+  }
+}
+</script>
+<script>
 var isFormGood = false;
 $(document).ready(function() {
   $('button[type="submit"]').attr('disabled','disabled');
@@ -58,15 +70,11 @@ $(document).ready(function() {
 });
 </script>
 <script>
-$(document).ready(form);
-$(window).resize(form);
-function form() {
-  if($(window).width() < 980) {
-    $('#join-container').addClass('span7').removeClass('span5');
-  }
-  else {
-    $('#join-container').addClass('span5').removeClass('span7');
-  }
-}
+$(document).ready(function() {
+  $('.form-horizontal').one('submit', function() {
+    $('input').each(function() {$(this).attr('readonly','readonly');});
+    $('button[type="submit"]').attr('disabled','disabled').text('Submitting...');
+  });
+});
 </script>
 {% endblock %}
