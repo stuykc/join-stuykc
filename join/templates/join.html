@@ -33,6 +33,7 @@
         </form>
     </div>
 </div>
+<div class="load" style="display:none;position:fixed;z-index:1000;top:0;left:0;height:100%;width:100%;background:rgba(255,255,255,.90);opacity: 0.90;-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity = 90);filter: alpha(opacity = 90);"></div>
 {% endblock %}{% block scripts %}
 <script>
 $(document).ready(form);
@@ -69,11 +70,36 @@ $(document).ready(function() {
   });
 });
 </script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/spin.js/1.2.7/spin.min.js"></script>
 <script>
 $(document).ready(function() {
+  $.fn.spin = function(opts) {
+    this.each(function() {
+      var $this = $(this), spinner = $this.data('spinner');
+      if (spinner) spinner.stop();
+      if (opts !== false) {
+        opts = $.extend({color: $this.css('color')}, opts);
+        spinner = new Spinner(opts).spin(this);
+        $this.data('spinner', spinner);
+      }
+    });
+    return this;
+  };
+  var opts = {
+    lines: 12, // The number of lines to draw
+    length: 23, // The length of each line
+    width: 9, // The line thickness
+    radius: 30, // The radius of the inner circle
+    color: '#00aeef', // #rbg or #rrggbb
+    speed: 1, // Rounds per second
+    trail: 80, // Afterglow percentage
+    shadow: true // Whether to render a shadow
+  };
+  var spinner = new Spinner().spin();
   $('.form-horizontal').one('submit', function() {
     $('input').each(function() {$(this).attr('readonly','readonly');});
     $('button[type="submit"]').attr('disabled','disabled').text('Submitting...');
+    $('.load').show().spin(opts);
   });
 });
 </script>
