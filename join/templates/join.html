@@ -16,7 +16,7 @@
             <div class="control-group">
                 <label class="control-label" for="inputId">4 Digit ID</label>
                 <div class="controls">
-                    <input type="text" class="input-mini" maxlength="4" name="id" placeholder="ID">
+                    <input type="text" class="input-mini" id="id" maxlength="4" name="id" placeholder="ID">
                 </div>
             </div>
             <div class="control-group">
@@ -48,6 +48,9 @@ function form() {
 }
 </script>
 <script>
+$(document).on('keypress', '#id', function (event) {
+  return (((event.which > 47) && (event.which < 58)) || (event.which == 13));
+});
 var isFormGood = false;
 $(document).ready(function() {
   $('button[type="submit"]').attr('disabled','disabled');
