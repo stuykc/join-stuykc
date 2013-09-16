@@ -1,20 +1,12 @@
 {% extends "layout.html" %}
 {% block body %}
 <div class="row" style="margin-top:20px;">
-    <div class="span8 offset2" style="vertical-align:middle;">
+    <div class="span6 offset3" style="vertical-align:middle;">
         <div class="alert alert-info" style="text-align:center;">
-            Thanks for signing up to be part of Stuy Key Club! You will receive updates and information at {{ email }}
+            Thanks for joining Stuyvesant Key Club! You will receive updates and information at {{ email }}!
+            <hr>
+            Prepare for a year of service and fun! &lt;3
         </div>
-        <p>Check out the new Key Club video and see how well Key Club fits your style!</p>
-        <iframe id="video" style="width:100%; height:370px;" src="//www.youtube.com/embed/2AEH6NQCd7c?autohide=1&autoplay=1&modestbranding=1&rel=0" seamless allowfullscreen></iframe>
     </div>
 </div>
-{% endblock %}{% block scripts %}
-<script>
-$(document).ready(video);
-$(window).resize(video);
-function video() {
-  $('#video').height(Math.round($('#video').width() / 1.777));
-}
-</script>
 {% endblock %}
