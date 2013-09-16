@@ -33,6 +33,6 @@ class JoinForm(webapp2.RequestHandler):
 
 application = webapp2.WSGIApplication([
     ('/mainpage', MainPage),
-    ('/', JoinForm),
-    ('/join', JoinForm)
+    ('/join', JoinForm),
+    ('/.*', JoinForm)
 ], debug=True)

@@ -1,12 +1,26 @@
 {% extends "layout.html" %}
 {% block body %}
 <div class="row" style="margin-top:20px;">
-    <div class="span6 offset3" style="vertical-align:middle;">
-        <div class="alert alert-info" style="text-align:center;">
+    <div class="span6 offset3" id="submit-container" style="vertical-align:middle;">
+        <div class="alert alert-info text-center">
             Thanks for joining Stuyvesant Key Club! You will receive updates and information at {{ email }}!
             <hr>
-            Prepare for a year of service and fun! &lt;3
+            Prepare for a year of fun and service! &lt;3
         </div>
     </div>
 </div>
+{% endblock %}
+{% block scripts %}
+<script>
+$(document).ready(form);
+$(window).resize(form);
+function form() {
+  if($(window).width() <= 979) {
+    $('#submit-container').addClass('span8').addClass('offset2').removeClass('span6').removeClass('offset3');
+  }
+  else {
+    $('#submit-container').addClass('span6').addClass('offset3').removeClass('span8').removeClass('offset2');
+  }
+}
+</script>
 {% endblock %}
