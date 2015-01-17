@@ -11,11 +11,13 @@ class MainPage(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('index.html')
         self.response.write(template.render({}))
 
-class JoinForm(webapp2.RequestHandler):
+class JoinFormHandler(webapp2.RequestHandler):
 
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('join.html')
         self.response.write(template.render({}))
+
+class SubmitHandler(webapp2.RequestHandler):
 
     def post(self):
         name = self.request.get('name')
@@ -32,7 +34,7 @@ class JoinForm(webapp2.RequestHandler):
         self.response.write(template.render(template_values))
 
 application = webapp2.WSGIApplication([
-    ('/mainpage', MainPage),
-    ('/join', JoinForm),
-    ('/.*', JoinForm)
+    ('/main', MainPage),
+    ('/submit', SubmitHandler),
+    ('/.*', JoinFormHandler)
 ], debug=True)

@@ -1,0 +1,35 @@
+body {
+    background-color: #f5f5f5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Handlee,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.jumbotron {
+    margin-top: 25px;
+}
+
+.jumbotron .title {
+    color: #00aeef !important;
+    margin-bottom: 20px;
+}
+
+.jumbotron .helper-title {
+    margin-top: 0;
+}
+
+.fb-logo {
+    margin: 2px;
+    width: 20px;
+    height: 20px;
+    vertical-align: top;
+}
+
+@media screen and (min-width:768px) {
+
+    .jumbotron .title {
+        font-size: 50px;
+    }
+
+}

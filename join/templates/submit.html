@@ -1,27 +1,14 @@
 {% extends "layout.html" %}
 {% block body %}
-<div class="row" style="margin-top:20px;">
-    <div class="span6 offset3" id="submit-container" style="vertical-align:middle;">
-        <div class="alert alert-info text-center">
-            <p>Thanks for joining Stuyvesant Key Club! You will receive updates and information at {{ email }}!</p>
-            <p>Also, join the <a href="https://www.facebook.com/groups/714540058597891/"><img src="/images/facebook.png" style="width:20px; height:20px; vertical-align:top;" /> StuyKC Facebook Group!</a></p>
-            <hr>
-            Prepare for a year of fun and service! &lt;3
-        </div>
-    </div>
+<div class="page-header text-center">
+    <h1 class="title">Thank you!</h1>
 </div>
-{% endblock %}
-{% block scripts %}
-<script>
-$(document).ready(form);
-$(window).resize(form);
-function form() {
-  if($(window).width() <= 979) {
-    $('#submit-container').addClass('span8').addClass('offset2').removeClass('span6').removeClass('offset3');
-  }
-  else {
-    $('#submit-container').addClass('span6').addClass('offset3').removeClass('span8').removeClass('offset2');
-  }
-}
-</script>
+<div class="col-sm-8 col-sm-offset-2">
+    <p class="lead">
+        Thanks for joining Stuyvesant Key Club!<br>We will be adding your email, {{ email }}, to our mailing list soon. The majority of our updates and events will be sent through the mailing list, so watch out for the invitation!
+    </p>
+    <p class="lead">In the meantime, feel free to join:<br>
+        <a href="https://www.facebook.com/groups/714540058597891/"><img src="/images/facebook.png" class="fb-logo" /> the Stuyvesant Key Club Facebook Group</a>!
+    </p>
+</div>
 {% endblock %}
