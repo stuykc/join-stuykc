@@ -33,5 +33,8 @@ handlers:
 - url: /js
   static_dir: static/js
   expiration: 7d
+- url: /admin.*
+  script: join.views.application
+  login: admin
 - url: /.*
   script: join.views.application

@@ -1,39 +1,61 @@
-import os, webapp2, jinja2
-from add import add_member
+from google.appengine.ext import ndb
+from join import *
+from join.add import add_member
+from join.models import *
 
-JINJA_ENVIRONMENT = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__), 'templates')),
-    extensions=['jinja2.ext.autoescape'])
-
-class MainPage(webapp2.RequestHandler):
+class MainPage(BaseHandler):
 
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('index.html')
-        self.response.write(template.render({}))
+        self.render_template('index.html')
 
-class JoinFormHandler(webapp2.RequestHandler):
+class JoinFormHandler(BaseHandler):
 
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('join.html')
-        self.response.write(template.render({}))
+        self.render_template('join.html')
 
-class SubmitHandler(webapp2.RequestHandler):
+class SubmitHandler(BaseHandler):
 
     def post(self):
         name = self.request.get('name')
         stuyId = self.request.get('id')
         email = self.request.get('email')
-
         add_member(name, stuyId, email)
 
         template_values = {
             'email': email
         }
+        self.render_template('submit.html')
 
-        template = JINJA_ENVIRONMENT.get_template('submit.html')
-        self.response.write(template.render(template_values))
+class SettingsHandler(BaseHandler):
+
+    def get(self):
+        self._serve_page()
+
+    def post(self):
+        config = ndb.Key(Settings, 'config').get()
+        if not config:
+            config = Settings(id='config')
+
+        config.google_username = self.request.get('google_username')
+        config.google_password = self.request.get('google_password')
+
+        config.put()
+        self._serve_page()
+
+    def _serve_page(self):
+        config_key = ndb.Key(Settings, 'config')
+        if config_key:
+            config = config_key.get()
+        else:
+            config = {}
+
+        template_values = {
+            'config': config
+        }
+        self.render_template('settings.html', template_values)
 
 application = webapp2.WSGIApplication([
+    ('/admin/settings', SettingsHandler),
     ('/main', MainPage),
     ('/submit', SubmitHandler),
     ('/.*', JoinFormHandler)
