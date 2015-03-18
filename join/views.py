@@ -24,7 +24,7 @@ class SubmitHandler(BaseHandler):
         template_values = {
             'email': email
         }
-        self.render_template('submit.html')
+        self.render_template('submit.html', template_values)
 
 class SettingsHandler(BaseHandler):
 
