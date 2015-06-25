@@ -1,5 +1,5 @@
-from google.appengine.ext import ndb
 from join import *
+from google.appengine.ext import ndb
 
 class SettingsHandler(BaseHandler):
 
