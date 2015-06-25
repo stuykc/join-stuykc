@@ -33,14 +33,14 @@ def send_email(name, stuy_id, email):
     message.body = """
 Hey %s,
 
-Thank you for signing up to be a part of Stuyvesant Key Club! We are part of the world's largest service organizations that exist today!
+Thank you for signing up to be a part of Stuyvesant Key Club! We are part of the world's largest high school service organization that exist today! Here, you'll find your passion in volunteering, and developing amazing leadership qualities while having LOTS of fun.
 
 You had submitted the following information:
     Name: %s
     4 Digit ID: %s
     Email: %s
 
-We are very excited to have you join us. We hope you join us on our facebook group (https://www.facebook.com/groups/stuyvesantkeyclub/), where we will post important updates and about other awesome news. We also have a mailing list that you should definitely sign up for(https://groups.google.com/forum/#!forum/stuyvesant-key-club)!
+We hope you join us on our facebook group (https://www.facebook.com/groups/stuyvesantkeyclub/), where we will post important updates and about other awesome news. We also have a mailing list that you should definitely sign up for(https://groups.google.com/forum/#!forum/stuyvesant-key-club)!
 
 See you at our next meeting/event!
 

@@ -1,5 +1,5 @@
-from join.models import *
 from google.appengine.ext import ndb
+from models import *
 
 config = ndb.Key(Settings, 'config').get()
 if not config:
