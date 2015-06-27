@@ -6,25 +6,28 @@
     <img class="img-responsive center-block" src="/images/logo.png" alt="Key Club Logo" />
 </div>
 <div class="row">
-<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" id="join-container">
-    <form id="join-form" class="form-horizontal" action="/submit" method="post">
-        <div class="form-group">
-            <label for="inputName" class="col-sm-3 control-label">Name</label>
-            <div class="col-sm-7">
-                <input type="text" class="form-control" id="inputName" name="name" placeholder="Full Name" autofocus autocomplete="off">
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" id="join-container">
+        <form id="join-form" class="form-horizontal" action="/submit" method="post">
+            <div class="form-group">
+                <label for="inputName" class="col-sm-3 control-label">Name</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="inputName" name="name" placeholder="Full Name" autofocus autocomplete="off">
+                    <span id="nameHelpBlock" class="help-block text-danger" style="display:none;">Please use your full name.</span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputId" class="col-sm-3 control-label">4 Digit ID</label>
-            <div class="col-sm-3">
-                <input type="text" class="form-control" id="inputId" maxlength="4" name="id" placeholder="ID" autocomplete="off">
+            <div class="form-group">
+                <label for="inputId" class="col-sm-3 control-label">4 Digit ID</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="inputId" maxlength="4" name="id" placeholder="ID" autocomplete="off">
+                    <span id="idHelpBlock" class="help-block text-danger" style="display:none;">4 Digit ID?</span>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputEmail" class="col-sm-3 control-label">Email</label>
-            <div class="col-sm-7">
-                <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email Address" autocomplete="off">
-                <span id="emailHelpBlock" class="help-block text-danger" style="display:none;">Are you sure that this email is valid?</span>
+            <div class="form-group">
+                <label for="inputEmail" class="col-sm-3 control-label">Email</label>
+                <div class="col-sm-7">
+                    <input type="email" class="form-control" id="inputEmail" name="email" placeholder="Email Address" autocomplete="off">
+                    <span id="emailHelpBlock" class="help-block text-danger" style="display:none;">Are you sure that this email is valid?</span>
+                </div>
             </div>
         </div>
         <button type="submit" id="submit-button" class="col-sm-6 col-sm-offset-3 btn btn-primary" data-loading-text="Submitting...">Submit</button>
@@ -44,42 +47,63 @@
 $('#inputId').keydown(function(event) {
     return event.which < 58 || (event.which >= 96 && event.which <= 105);
 });
-var isFormGood = false;
 $(document).ready(function() {
-    $('button[type="submit"]').prop('disabled', true);
-    $('#join-form').one('submit', function() {
-        $('.spinner-background').show();
-        $('input').each(function() {$(this).prop('readonly', true);});
-        $('#submit-button').button('loading');
-    });
-});
-$('input').keyup(function() {
-    $('input').each(function() {
-        if ($(this).val()) {
-            isFormGood = true;
+    $('#join-form').submit(function() {
+        if (checkForm()) {
+            $('.spinner-background').show();
+            $('input').each(function() {$(this).prop('readonly', true);});
+            $('#submit-button').button('loading');
         }
         else {
-            isFormGood = false;
             return false;
         }
     });
-    if (isFormGood) {
-        $('button[type="submit"]').prop('disabled', false);
-    }
-    else {
-        $('button[type="submit"]').prop('disabled', true);
-    }
 });
-var re = /^([a-zA-Z0-9+_\-\.])+@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,6})$/;
-$('#inputEmail').keyup(function() {
-    if (re.test($(this).val())) {
-        $('#emailHelpBlock').fadeOut();
-        $('button[type="submit"]').prop('disabled', false);
+function checkForm() {
+    var isFormGood = true;
+    isFormGood = checkName() && isFormGood;
+    isFormGood = checkId() && isFormGood;
+    isFormGood = checkEmail() && isFormGood;
+    return isFormGood;
+}
+function checkName() {
+    var name = $('#inputName').val();
+    $('#nameHelpBlock').fadeOut(); // Add blink effect
+    if (name.length > 0 && name.indexOf(" ") != -1) { // Not empty and contains space
+        $('#inputName').parent().parent().removeClass("has-error");
+        return true;
     }
     else {
+        $('#inputName').parent().parent().addClass("has-error");
+        $('#nameHelpBlock').fadeIn();
+        return false;
+    }
+}
+function checkId() {
+    var id = parseInt($('#inputId').val());
+    $('#idHelpBlock').fadeOut(); // Add blink effect
+    if (id >= 1000 && id <= 9999) { // Between 1000 and 9999
+        $('#inputId').parent().parent().removeClass("has-error");
+        return true;
+    }
+    else {
+        $('#inputId').parent().parent().addClass("has-error");
+        $('#idHelpBlock').fadeIn();
+        return false;
+    }
+}
+function checkEmail() {
+    var re = /^([a-zA-Z0-9+_\-\.])+@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,6})$/;
+    $('#emailHelpBlock').fadeOut(); // Add blink effect
+    if (re.test($('#inputEmail').val())) { // Valid email
+        $('#inputEmail').parent().parent().removeClass("has-error");
+        return true;
+    }
+    else {
+        $('#inputEmail').parent().parent().addClass("has-error");
         $('#emailHelpBlock').fadeIn();
-        $('button[type="submit"]').prop('disabled', true);
+        return false;
     }
-});
+}
 </script>
 {% endblock %}
