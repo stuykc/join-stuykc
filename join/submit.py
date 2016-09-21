@@ -7,10 +7,15 @@ class SubmitHandler(BaseHandler):
         name = self.request.get('name')
         stuy_id = self.request.get('id')
         email = self.request.get('email')
-        success = add_member(name, stuy_id, email)
-        while not success:
-            success = add_member(name, stuy_id, email)
-        send_email(name, stuy_id, email)
+        status = self.request.get('status')
+        osis = self.request.get('osis')
+        phone = self.request.get('phone')
+        homeroom = self.request.get('homeroom')
+        grade = self.request.get('grade')
+        success = add_member(name, stuy_id, email,status,osis,phone,homeroom,grade)
+        #while not success:
+        #    success = add_member(name, stuy_id, email,status,osis,phone,homeroom,grade)
+        send_email(name, stuy_id, email,status,osis,phone,homeroom,grade)
 
         template_values = {
             'email': email

@@ -15,6 +15,11 @@ class SettingsHandler(BaseHandler):
         config.name = self.request.get('name')
         config.stuy_id = self.request.get('stuy_id')
         config.email = self.request.get('email')
+        config.status = self.request.get('status')
+        config.osis = self.request.get('osis')
+        config.phone = self.request.get('phone')
+        config.homeroom = self.request.get('homeroom')
+        config.grade = self.request.get('grade')
 
         config.put()
         self._serve_page()
