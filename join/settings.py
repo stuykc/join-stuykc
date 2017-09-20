@@ -13,7 +13,6 @@ class SettingsHandler(BaseHandler):
 
         config.url = self.request.get('url')
         config.name = self.request.get('name')
-        config.stuy_id = self.request.get('stuy_id')
         config.email = self.request.get('email')
         config.status = self.request.get('status')
         config.osis = self.request.get('osis')
