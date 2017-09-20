@@ -118,6 +118,19 @@ function checkName() {
         return false;
     }
 }
+function checkId() {
+   var id = parseInt($('#inputId').val());
+   $('#idHelpBlock').fadeOut(); // Add blink effect
+   if (id >= 1000 && id <= 9999) { // Between 1000 and 9999
+        $('#inputId').parent().parent().removeClass("has-error");
+        return true;
+    }
+    else {
+        $('#inputId').parent().parent().addClass("has-error");
+        $('#idHelpBlock').fadeIn();
+        return false;
+    }
+}
 function checkEmail() {
     var re = /^([a-zA-Z0-9+_\-\.])+@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,6})$/;
     $('#emailHelpBlock').fadeOut(); // Add blink effect
