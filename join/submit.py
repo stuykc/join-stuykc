@@ -5,7 +5,6 @@ class SubmitHandler(BaseHandler):
 
     def post(self):
         name = self.request.get('name')
-        stuy_id = self.request.get('id')
         email = self.request.get('email')
         status = self.request.get('status')
         osis = self.request.get('osis')
